@@ -171,10 +171,10 @@ if qbutton or bbutton or st.session_state.get("submit"):
 
             with placeholder.container():
                 st.markdown("#### Answer")
-                st.markdown(answer["output_text"].split("Source:")[0])
+                st.markdown(answer["output_text"].split("SOURCES:")[0])
                 st.markdown("Sources:")
                 try: 
-                    for s in answer["output_text"].split("Source:")[1].replace(' ','').split(","):
+                    for s in answer["output_text"].split("SOURCES:")[1].replace(" ","").split(","):
                         st.markdown(s) 
                 except:
                     st.markdown("N/A")
