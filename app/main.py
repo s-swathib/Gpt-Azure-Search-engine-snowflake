@@ -75,17 +75,16 @@ sidebar()
 
 with st.expander("Instructions"):
     st.markdown("""
-                Ask a question that you think can be answered with the information in about 10k Arxiv Computer Science publications from 2020-2021 or in 52k Medical Covid-19 Publications from 2020.
+                Ask a question that you think can be answered with the information in about Snowflake Overview, Internals and Security Guide.
                 
                 For example:
-                - What are markov chains?
-                - List the authors that talk about Gradient Boosting Machines
-                - How does random forest work?
-                - What kind of problems can I solve with reinforcement learning? Give me some real life examples
-                - What kind of problems Turing Machines solve?
-                - What are the main risk factors for Covid-19?
-                - What medicine reduces inflamation in the lungs?
-                - Why Covid doesn't affect kids that much compared to adults?
+                - What is Snowflake?
+                - What is the difference between Snowflake and Databricks?
+                - What is the throughput of reading and writing on Snowflake?
+                - Does Snowflake support true columner storage?
+                - What is the pricing of Snowflake?
+                - What is the pricing of Snowflake with the link to the website?
+                - Does Snowflake support only Cloud or it also supports on-prem installation?
                 
                 \nYou will notice that the answers to these questions are diferent from the open ChatGPT, since these papers are the only possible context. This search engine does not look at the open internet to answer these questions. If the context doesn't contain information, the engine will respond: I don't know.
                 """)
@@ -94,7 +93,7 @@ with st.expander("Instructions"):
                 - ***Best Answer***: GPT model uses, as context. all of the content of the documents coming from Azure Search
                 """)
 
-query = st.text_input("Ask a question to your enterprise data lake", value= "What is CLP?", on_change=clear_submit)
+query = st.text_input("Ask a question to your enterprise data lake", value= "What is Snowflake?", on_change=clear_submit)
 
 # options = ['English', 'Spanish', 'Portuguese', 'French', 'Russian']
 # selected_language = st.selectbox('Answer Language:', options, index=0)
@@ -114,9 +113,8 @@ if qbutton or bbutton or st.session_state.get("submit"):
     else:
         # Azure Search
         
-        index1_name = "cogsrch-index-files"
-        index2_name = "cogsrch-index-csv"
-        indexes = [index1_name, index2_name]
+        index1_name = "cogsrch-snowflake-index-files"
+        indexes = [index1_name]
         agg_search_results = get_search_results(query, indexes)
 
         file_content = OrderedDict()
@@ -173,10 +171,10 @@ if qbutton or bbutton or st.session_state.get("submit"):
 
             with placeholder.container():
                 st.markdown("#### Answer")
-                st.markdown(answer["output_text"].split("SOURCES:")[0])
+                st.markdown(answer["output_text"].split("Source:")[0])
                 st.markdown("Sources:")
                 try: 
-                    for s in answer["output_text"].split("SOURCES:")[1].replace(" ","").split(","):
+                    for s in answer["output_text"].split("Source:")[1].replace(' ','').split(","):
                         st.markdown(s) 
                 except:
                     st.markdown("N/A")
