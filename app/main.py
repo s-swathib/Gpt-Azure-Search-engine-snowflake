@@ -33,7 +33,7 @@ os.environ["OPENAI_API_KEY"] = os.environ["AZURE_OPENAI_API_KEY"] = st.session_s
 os.environ["OPENAI_API_VERSION"] = os.environ["AZURE_OPENAI_API_VERSION"] = AZURE_OPENAI_API_VERSION
 
 
-
+#changes
 def clear_submit():
     st.session_state["submit"] = False
 
